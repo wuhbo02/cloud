@@ -41,4 +41,4 @@ spring:
     username: root
     password: whb888888
   application:
-    name: @artifactId@
+    name: auth-service
