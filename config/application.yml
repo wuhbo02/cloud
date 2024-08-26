@@ -1,0 +1,44 @@
+security:
+  oauth2:
+    client:
+      client-id: app
+      client-secret: app
+      scope: server
+      # 默认放行url,子模块重写时application-dev.yml中的公共配置会被覆盖,所以要把公共配置中的放行url再写一次
+      ignore-urls:
+        - /actuator/**
+        - /v2/api-docs
+        - /user/info/*
+        - /user/pki/info/**
+        - /log/save
+        - /parameter/key/**
+        - /menu/getMenuTree
+        - /ipFilter/isIpFilter
+        - /u/editor/getFile/*
+        - /dict/type/news_type
+        - /dict/type/subType
+        - /dict/type/policeCategoryNew
+        - /dict/type/app_category
+        - /v2/api-docs-ext
+        - /we/chat/api/**
+        - /**/v2/api-docs/**
+        - /**/oauth/**
+        - /swagger-ui.html
+        - /**/swagger-resources/**
+        - /favicon.ico
+        - /error
+        - /
+        - /doc.html
+
+
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 6
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth-serv
+    username: root
+    password: whb888888
+  application:
+    name: @artifactId@
