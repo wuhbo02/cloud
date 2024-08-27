@@ -1,0 +1,36 @@
+
+spring:
+  application:
+    name: gateway
+  #配置中心
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true   # 利用微服务名进行路由
+      routes:
+        - id: product-serv
+          uri: lb://product-serv
+          predicates:
+            - Host=localhost:9000
+            - Path=/product/
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/oauth/
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: dev
+
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/auth-serv?characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: root
+    password: whb888888
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 6
